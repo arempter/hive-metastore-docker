@@ -1,0 +1,32 @@
+version: "2"
+
+services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: metastore_db
+
+  # make sure that you specify correct volume to be mounted
+  minio:
+    image: minio/minio
+    environment:
+      - MINIO_ACCESS_KEY=accesskey
+      - MINIO_SECRET_KEY=secretkey
+    volumes:
+      - /data1/minio:/data
+    ports:
+      - 9000:9000
+    command: server /data
+
+  hive-metastore:
+    build: .
+    image: hive-metasore:latest
+    ports:
+    - 9083:9083
+    depends_on:
+      - mariadb
