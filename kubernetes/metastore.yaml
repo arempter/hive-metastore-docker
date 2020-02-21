@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metastore
+  labels:
+    app: hive-metastore
+  namespace: spark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hive-metastore
+  template:
+    metadata:
+      labels:
+        app: hive-metastore
+    spec:
+      containers:
+        - name: hive-metastore
+          image: arempter/hive-metastore
+          ports:
+            - containerPort: 9083

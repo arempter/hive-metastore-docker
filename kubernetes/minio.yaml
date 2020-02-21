@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  labels:
+    app: minio
+  namespace: spark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: minio/minio
+          ports:
+            - containerPort: 9000
+          env:
+            - name: MINIO_ACCESS_KEY
+              value: accesskey
+            - name: MINIO_SECRET_KEY
+              value: secretkey
+          args:
+            - server
+            - /data
+
+
