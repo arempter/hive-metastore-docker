@@ -25,7 +25,7 @@ services:
 
   hive-metastore:
     build: .
-    image: hive-metasore:latest
+    image: hive-metastore:latest
     ports:
     - 9083:9083
     depends_on:
