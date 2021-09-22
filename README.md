@@ -2,12 +2,11 @@
 
 ### About
 
-Example of running standalone Hive Metastore. Minio is used as S3 storage for external
-tables.  
+Example of running standalone Hive Metastore. Note that this particular fork omits Minio, which means you may want
+to deploy other S3 storage for external tables.  Check the original github repo ( https://github.com/andypern/hive-metastore-docker ) for an example which includes Minio.
 
 It contains following containers:
 - mariadb as dependency
-- minio to test S3 access (make sure that you specify correct volume to be mounted)
 - hive metastore  3.x
 
 ### How to run

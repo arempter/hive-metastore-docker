@@ -14,7 +14,7 @@
     </property>
     <property>
         <name>metastore.warehouse.dir</name>
-        <value>s3a://spark/warehouse/</value>
+        <value>s3a://bucket/warehouse/</value>
     </property>
     <property>
         <name>javax.jdo.option.ConnectionDriverName</name>
@@ -46,7 +46,7 @@
     </property>
     <property>
         <name>fs.s3a.endpoint</name>
-        <value>http://minio:9000</value>
+        <value>http://my.s3.endpoint:80</value>
     </property>
     <property>
         <name>fs.s3a.path.style.access</name>
