@@ -23,7 +23,7 @@
 
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://mariadb:3306/metastore_db</value>
+        <value>jdbc:mysql://localhost:3306/metastore_db</value>
     </property>
 
     <property>

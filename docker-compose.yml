@@ -2,6 +2,7 @@ version: "2"
 
 services:
   mariadb:
+    network_mode: host
     image: mariadb:latest
     ports:
       - 3306:3306
@@ -13,6 +14,7 @@ services:
 
 
   hive-metastore:
+    network_mode: host
     build: .
     image: hive-metastore:latest
     ports:
