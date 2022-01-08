@@ -2,17 +2,20 @@ FROM openjdk:8u242-jre
 
 WORKDIR /opt
 
-ENV HADOOP_VERSION=3.2.0
-ENV METASTORE_VERSION=3.0.0
+ARG HADOOP_VERSION=3.2.0
+ARG METASTORE_VERSION=3.0.0
+ARG MYSQL_CONNECTOR_VERSION=8.0.19
 
 ENV HADOOP_HOME=/opt/hadoop-${HADOOP_VERSION}
 ENV HIVE_HOME=/opt/apache-hive-metastore-${METASTORE_VERSION}-bin
+ENV JAVA_HOME=/usr/local/openjdk-8
 
-RUN curl -L https://www-us.apache.org/dist/hive/hive-standalone-metastore-${METASTORE_VERSION}/hive-standalone-metastore-${METASTORE_VERSION}-bin.tar.gz | tar zxf - && \
+
+RUN curl -L https://dlcdn.apache.org/hive/hive-standalone-metastore-${METASTORE_VERSION}/hive-standalone-metastore-${METASTORE_VERSION}-bin.tar.gz | tar zxf - && \
     curl -L https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz | tar zxf - && \
-    curl -L https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.19.tar.gz | tar zxf - && \
-    cp mysql-connector-java-8.0.19/mysql-connector-java-8.0.19.jar ${HIVE_HOME}/lib/ && \
-    rm -rf  mysql-connector-java-8.0.19
+    curl -L https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.tar.gz | tar zxf - && \
+    cp mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}.jar ${HIVE_HOME}/lib/ && \
+    rm -rf  mysql-connector-java-${MYSQL_CONNECTOR_VERSION}
 
 COPY conf/metastore-site.xml ${HIVE_HOME}/conf
 COPY scripts/entrypoint.sh /entrypoint.sh
@@ -25,4 +28,4 @@ RUN groupadd -r hive --gid=1000 && \
 USER hive
 EXPOSE 9083
 
-ENTRYPOINT ["sh", "-c", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
