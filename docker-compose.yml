@@ -3,7 +3,7 @@ version: "2"
 services:
   mariadb:
     network_mode: host
-    image: mariadb:latest
+    image: mariadb:10.7 
     ports:
       - 3306:3306
     environment:
