@@ -1,4 +1,10 @@
-FROM openjdk:8u242-jre
+FROM openjdk:8u342-jre
+
+RUN apt-get update \
+ && apt-get install --assume-yes telnet python3 python3-pip procps \
+ && apt-get clean
+
+RUN pip3 install pyspark~=3.3.1 pandas~=1.5.3
 
 WORKDIR /opt
 
