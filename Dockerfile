@@ -1,5 +1,9 @@
 FROM openjdk:8u242-jre
 
+RUN apt-get update \
+ && apt-get install --assume-yes telnet \
+ && apt-get clean
+
 WORKDIR /opt
 
 ENV HADOOP_VERSION=3.2.0
