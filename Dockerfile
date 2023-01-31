@@ -6,6 +6,10 @@ RUN apt-get update \
 
 RUN pip3 install pyspark~=3.3.1 pandas~=1.5.3
 
+RUN apt-get update \
+ && apt-get install --assume-yes telnet \
+ && apt-get clean
+
 WORKDIR /opt
 
 ENV HADOOP_VERSION=3.2.0
