@@ -9,6 +9,7 @@ It contains following containers:
 - mariadb as dependency
 - minio to test S3 access (make sure that you specify correct volume to be mounted)
 - hive metastore  3.x
+- Pyspark 3.3.x and Pandas
 
 ### How to run
 
